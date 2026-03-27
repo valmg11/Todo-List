@@ -1,21 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useState, useCallback} from 'react';
-import { StyleSheet, Text, View, FlatList, Button} from 'react-native';
-import { TextInput } from 'react-native-web';
+// import React, {useState, useCallback} from 'react';
+import { StyleSheet, Text, View, FlatList} from 'react-native';
+// import { TextInput } from 'react-native-web';
 // import { CheckBox } from '@rneui/themed';
 
 let data = ["Tsuki", "Mashiro", "Niko", "Yo-Chan","Katsunori"];
 
 export default function App() {
-  let [newMenuItem, setNewMenuItem] = useState("");
-  let [menuItems, setMenuItems] = useState("");
+  // let [newMenuItem, setNewMenuItem] = useState("");
+  // let [menuItems, setMenuItems] = useState("");
 
-  let addMenuItem = useCallback(() => {
-    console.log("added")
-    setMenuItems([newMenuItem, ...menuItems])
-  }, [newMenuItem, menuItems])
+  // let addMenuItem = useCallback(() => {
+  //   console.log("added")
+  //   setMenuItems([newMenuItem, ...menuItems])
+  // }, [newMenuItem, menuItems])
 
-  let [counter, setCounter] = useState(0);
+  // let [counter, setCounter] = useState(0);
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Awesome Seals</Text>
@@ -27,7 +27,7 @@ export default function App() {
       <StatusBar style="auto" />
 
 
-      <TextInput 
+      {/* <TextInput 
       placeholder="Add todo item..."
       style={{
           height: 40,
@@ -47,7 +47,7 @@ export default function App() {
         onPress={() => {
           addMenuItem(), 
           console.log("addItem")}}
-        color="blue"></Button>
+        color="blue"></Button> */}
     </View>
   );
 }
