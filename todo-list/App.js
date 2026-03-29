@@ -4,26 +4,21 @@ import { StyleSheet, Text, View, FlatList, Button } from "react-native";
 import { TextInput } from "react-native-web";
 import { CheckBox } from "@rneui/themed";
 
-let nextId = 0;
+let nextKey = 0;
 
 export default function App() {
-  let boo =[]
   let list = [
     {
-      name: "Tsuki",
-      id: 1,
+      description: "Do dishes",
+      key: 1,
     },
     {
-      name: "Mashiro",
-      id: 2,
+      description: "Buy groceries",
+      key: 2,
     },
     {
-      name: "Niko",
-      id: 3,
-    },
-    {
-      name: "Kroshik",
-      id: 4,
+      description: "Clean room",
+      key: 3,
     },
   ];
   const [isSelected, setIsSelected] = useState(false);
@@ -43,46 +38,46 @@ export default function App() {
       <StatusBar style="auto" />
 
       <View style={styles.container}></View>
+      <Text>To-Do List</Text>
       <View style={styles.checkboxContainer}>
         <FlatList
           data={list}
           renderItem={({ item }) => (
             <View>
               <CheckBox
-                title={item.name}
+                title={item.description}
                 checked={isSelected}
                 onPress={() => setIsSelected(!isSelected)}
               />
             </View>
           )}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.key}
         />
         {/* <Text style={styles.header}>Awesome Seals</Text>
       <FlatList
       data={data}
-      renderItem={({data}) => <Text>{data.name}</Text>}
+      renderItem={({data}) => <Text>{data.description}</Text>}
       keyExtractor={(index) => index.toString()}
       /> */}
 
-        <CheckBox
+        {/* <CheckBox
           title="Clean room"
           checked={isSelected}
           onPress={() => setIsSelected(!isSelected)}
-        />
+        /> */}
 
         {/* <CheckBox
         value={isSelected}
         onValueChange={setSelected}
       /> */}
-        <Text style={styles.label}>Do you like React Native?</Text>
       </View>
       <Text>
-        Is CheckBox selected: {isSelected ? "👍Cleaned" : "👎Not cleaned"}
+        Is CheckBox selected: {isSelected ? "👍" : "👎"}
       </Text>
 
       <TextInput
         placeholder="Add todo item..."
-        onChangeText={(event) => setText(event.target.defaultValue)}
+        onChangeText=""
         defaultValue={text}
         style={{
           height: 40,
@@ -109,8 +104,7 @@ export default function App() {
         title="add"
         style={[styles.button]}
         onPress={() => {
-          setArtists([...artists, { id: nextId++, text: text }]);
-          console.log("addItem", { text }, [...data]);
+          console.log("item added:", { text }, [...list]);
         }}
         color="blue"
       ></Button>
