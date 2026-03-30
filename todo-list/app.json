@@ -1,7 +1,7 @@
 {
   "expo": {
     "experiments":{
-      "baseUrl":"/your-repo-name"
+      "baseUrl":"/Todo-List"
     },
     "name": "todo-list",
     "slug": "todo-list",
