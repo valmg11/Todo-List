@@ -1,37 +1,43 @@
 import { StatusBar } from "expo-status-bar";
-import { useState, useCallback } from "react";
+import { useState,  } from "react";
 import { StyleSheet, Text, View, FlatList, Button } from "react-native";
 import { TextInput } from "react-native-web";
 import { CheckBox } from "@rneui/themed";
 
-let nextKey = 0;
 
 export default function App() {
   let list = [
     {
       description: "Do dishes",
-      key: 1,
+      key: 0,
+      checked: false,
     },
     {
       description: "Buy groceries",
-      key: 2,
+      key: 1,
+      checked: false,
     },
     {
       description: "Clean room",
-      key: 3,
+      key: 2,
+      checked: false,
     },
   ];
+
+  //starts as false
   const [isSelected, setIsSelected] = useState(false);
 
-  // let addMenuItem = useCallback(() => {
-  //   console.log("added")
-  //   setMenuItems([newMenuItem, ...menuItems])
-  // }, [newMenuItem, menuItems])
-
-  let [counter, setCounter] = useState(0);
-
+  //input
   const [text, setText] = useState("");
-  const [artists, setArtists] = useState([]);
+  //tasks
+  const [task, setTask] = useState(list);
+  let nextKey = task.length;
+
+  //adding tasks
+  function addTask (text) {
+    let newTodo = { description: text, key: nextKey, checked: false};
+    setTask([...task, newTodo]);
+  }
 
   return (
     <View style={styles.container}>
@@ -41,7 +47,7 @@ export default function App() {
       <Text>To-Do List</Text>
       <View style={styles.checkboxContainer}>
         <FlatList
-          data={list}
+          data={task}
           renderItem={({ item }) => (
             <View>
               <CheckBox
@@ -50,35 +56,21 @@ export default function App() {
                 onPress={() => setIsSelected(!isSelected)}
               />
             </View>
-          )}
+          )
+        }
           keyExtractor={(item) => item.key}
         />
-        {/* <Text style={styles.header}>Awesome Seals</Text>
-      <FlatList
-      data={data}
-      renderItem={({data}) => <Text>{data.description}</Text>}
-      keyExtractor={(index) => index.toString()}
-      /> */}
-
-        {/* <CheckBox
-          title="Clean room"
-          checked={isSelected}
-          onPress={() => setIsSelected(!isSelected)}
-        /> */}
-
-        {/* <CheckBox
-        value={isSelected}
-        onValueChange={setSelected}
-      /> */}
       </View>
+
+      {/* test for checkbox */}
       <Text>
         Is CheckBox selected: {isSelected ? "👍" : "👎"}
       </Text>
 
       <TextInput
         placeholder="Add todo item..."
-        onChangeText=""
-        defaultValue={text}
+        onChangeText={setText}
+        value={text}
         style={{
           height: 40,
           padding: 5,
@@ -89,22 +81,13 @@ export default function App() {
         }}
       />
 
-      <Text>Counter {counter}</Text>
-
-      <Button
-        title="count"
-        style={[styles.button]}
-        onPress={() => {
-          (setCounter(counter + 1), console.log("count"));
-        }}
-        color="red"
-      ></Button>
-
+      {/* add task button */}
       <Button
         title="add"
         style={[styles.button]}
         onPress={() => {
-          console.log("item added:", { text }, [...list]);
+          addTask(text);
+          console.log("item added:", { text }, task);
         }}
         color="blue"
       ></Button>
