@@ -61,6 +61,9 @@ export default function App() {
           keyExtractor={(item) => item.key}
         />
       </View>
+      <View>
+        
+      </View>
 
       {/* test for checkbox */}
       <Text>
@@ -101,7 +104,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 40,
+    // marginTop: 20,
+    marginBottom: 500,
   },
   header: {
     fontSize: 25,
