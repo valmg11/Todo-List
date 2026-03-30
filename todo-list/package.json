@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "predeploy": "expo export -p web",
+    "deploy": "gh-pages --nojekyll -d dist",
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
